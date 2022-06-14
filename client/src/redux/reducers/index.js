@@ -9,7 +9,7 @@ import {
   SORT_BY_NAME, SORT_BY_SCORE, CLEAR_GYM_DETAIL, GET_ATTRIBUTE_DESEASE, PUT_FAVOURITE, 
   CLEAR_CART, GET_CART, GET_ADMIN, GET_LOCK_ACCOUNTS, GET_MARKETING,SORT_QUALIFICATION,
   FILTER_CATEGORY, SORT_PRICE, SEARCH, SORT_DISTANCE, SET_GYMS_GEO, POST_GYM, GET_PARTNER,
-  GET_PLANS, GET_PARTNER_ID
+  GET_PLANS, GET_PARTNER_ID,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -89,15 +89,16 @@ export default function rootReducer(state = initialState, { type, payload }) {
         partnersToShow: payload,
       };
     case GET_PARTNER:
-      if (payload.error) {
-        return {
-          ...state,
-          errors: payload.error,
-        };
-      }
+      console.log(payload, 'llega al reducer')
+      // if (payload.error) {
+      //   return {
+      //     ...state,
+      //     errors: payload.error,
+      //   };
+      // }
       return {
         ...state,
-        partnerDetails: payload.partnerGyms,
+        partnerDetails: payload,
       };
     case GET_USER_TOKEN_GOOGLE:
       if (payload.error) {
@@ -122,6 +123,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
         user: {...state.user, info: payload}
       };
     case GET_PARTNER_ID:
+      if (payload.error) {
+        return {
+          ...state,
+          errors: payload.error,
+        };
+      };
       return {
         ...state,
         user: payload
