@@ -16,6 +16,7 @@ export default function DetailProfilePartner() {
   
   const partner = useSelector((state) => state.partnerDetails);
   console.log(partner)
+  console.log(userId, name, type, 'los params');
   // con el id ya podemos solicitar info a nuestro back, el cual solo responderá
   // si le llega este id (de la fomra que lo espera) y si el usuario tiene una
   // sesión iniciada.
@@ -26,15 +27,15 @@ export default function DetailProfilePartner() {
   return (
     <div className={styles.partnerMainContainer}>
       <div className={styles.partnerMiniContainer}>
-        <p>userId: {userId} </p>
-        <p>name: {name} </p>
-        <p>Typo: {type}</p>
+        <p>userId: {userId ? userId : null} </p>
+        <p>name: {name ? name : null} </p>
+        <p>Typo: {type ? type : null}</p>
       </div>
 
       {partner.name ? <div className={styles.partnerMiniContainer}>
         <h3>Detalles de su perfil</h3>
         <p>En esta seccion usted podrá ver la informacion de su perfil</p>
-        <p>Nombre: {partner.name ? partner.name : name}</p>
+        <p>Nombre: {partner.name ? partner.name : null}</p>
         <p>Apellido: {partner.lastName && partner.lastName}</p>
         <p>Email: {partner.email ? partner.email : ""}</p>
         <p>Telefono: {partner.phone && partner.phone}</p>
