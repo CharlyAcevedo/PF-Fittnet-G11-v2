@@ -15,7 +15,7 @@ export default function Services() {
   // const navigate = useNavigate();
   const dataPartner = useSelector((state) => state.myGyms);
   let myGyms = dataPartner.gyms ? dataPartner.gyms : [];
-  
+
   const [myServices, setMyServices] = useState([]);
   const userId = localStorage.getItem('userId');
 
@@ -32,8 +32,8 @@ export default function Services() {
     price: 0, // numero requerido
     photo: [], // Array de strings
     profileCategory: [],
-  });  
-  
+  });
+
   const [editService, setEditService] = useState({
     name: "Nuevo nombre", // string requerido
     description: "Nueva descripción del servicio", // string requerido
@@ -42,15 +42,15 @@ export default function Services() {
     photo: [], // Array de strings
     profileCategory: [],
   });
-  
+
   const [error, setError] = useState({});
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getMyGyms(userId))
-  },[userId]);
+  }, [userId]);
 
 
-  function refreshState (e) {
+  function refreshState(e) {
     e.preventDefault();
     dispatch(getMyGyms(userId))
 
@@ -132,7 +132,7 @@ export default function Services() {
       console.log(myGyms);
 
       let filterServices = myGyms.length && myGyms.filter(e => e._id === value);
-      
+
       setMyServices(filterServices);
 
       console.log(filterServices, ' los servicios del gym');
@@ -241,7 +241,7 @@ export default function Services() {
         <p></p>
         {typeAction ? typeAction : null}
 
-        <button onClick={(e)=> refreshState(e)}>Recargar</button>
+        <button onClick={(e) => refreshState(e)}>Recargar</button>
 
         <form action="">
 
