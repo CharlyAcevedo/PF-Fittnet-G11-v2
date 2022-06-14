@@ -4,7 +4,7 @@ import {
  
 
   POST_USER,POST_GYM,POST_SERVICES,POST_PARTNER, ADD_TO_CART, DELETE_DESEASE, GET_PARTNER,
- GET_ALL_USERS, GET_ALL_PARTNERS, GET_AVATARS, SET_CURRENT_PAGE, SET_PAGE_NUMBER,
+  GET_ALL_USERS, GET_ALL_PARTNERS, GET_AVATARS, SET_CURRENT_PAGE, SET_PAGE_NUMBER,
   SET_CURRENT_LIMIT, GET_ALL_GYMS, GET_GYM_DETAIL, SET_USER_GEO, POST_USER_GOOGLE,
   GET_USER, POST_AVATAR, GET_USER_TOKEN_GOOGLE, PUT_USER_INFO, REMOVE_FROM_CART,
   CLEAR_GYM_DETAIL, GET_ATTRIBUTE_DESEASE, PUT_FAVOURITE, 
@@ -165,8 +165,12 @@ export const getPartner = (idPartner) => async dispatch => {
       type: GET_PARTNER_ID,
       payload: dataPartner.data.partner
     })
-  } catch (error) {
-    console.log("error", error)
+  } catch (err) {
+    dispatch({
+      type: GET_PARTNER_ID,
+      payload: { error: err.message },
+    });
+    
   }
 }
 
@@ -292,11 +296,12 @@ export function updatePartnerData({
 
 export function getPartnerDetails(id) {
   return async (dispatch) => {
+    console.log('sale la accion de los detalles del partner')
     try {
       const response = await axios.get(`/api/partner/profile/${id}`);
       dispatch({
         type: GET_PARTNER,
-        payload: response.data,
+        payload: response.data.partner,
       });
     } catch (err) {
       dispatch({
