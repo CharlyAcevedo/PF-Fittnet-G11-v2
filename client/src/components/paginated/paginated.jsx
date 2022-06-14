@@ -193,7 +193,7 @@ export default function Paginated() {
         </label>
       </section> */}
       <div>
-        <section className={style.toShowSelector}>
+        {/* <section className={style.toShowSelector}>
           <label className={style.selectLageLabel}>
             Pages to show:{" "}
             <select
@@ -210,7 +210,7 @@ export default function Paginated() {
               <option value="12">12</option>
             </select>
           </label>
-        </section>
+        </section> */}
         <div className={style.containerPagination}>
           <ul className={style.paginationPrueba}>
             <li onClick={() => prevPage()} style={{ cursor: "pointer" }}>
