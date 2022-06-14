@@ -10,7 +10,7 @@ import {
   CLEAR_GYM_DETAIL, GET_ATTRIBUTE_DESEASE, PUT_FAVOURITE, 
   CLEAR_CART, GET_CART, GET_ADMIN, GET_LOCK_ACCOUNTS, GET_MARKETING,SORT_QUALIFICATION,
   FILTER_CATEGORY,  SORT_PRICE,  SEARCH,  SORT_DISTANCE, SET_GYMS_GEO,
-  GET_PLANS, GET_PARTNER_ID
+  GET_PLANS, GET_PARTNER_ID, GET_MY_GYMS
 } from "./actionTypes";
 //--------------------------------------------------------------------------------
 //------USER SERVICE ACTIONS------(favor de poner todas las aciones referentes a service en general todos los usuarios aqui)
@@ -217,6 +217,30 @@ export function getLockAccounts() {
 //--------------------------------------------------------------------------------
 //------PARTNER ACTIONS------(Favor de poner aqui todas las aciones para partners)
 //--------------------------------------------------------------------------------
+export function getMyGyms(partnerId) { 
+  // Esta ruta la consume el admin (va a estar protegida), y me trae información del
+  // perfil del admin que la solicita
+  return async (dispatch) => {
+    try {
+      const parternGyms = await axios({
+        method: "get", url: `/api/partner/gyms/mygyms/${partnerId}`,
+        headers: { "X-Requested-With": "XMLHttpRequest" }, withCredentials: true
+      });
+      console.log(parternGyms.data, "actions");
+      
+      dispatch({
+        type: GET_MY_GYMS,
+        payload: parternGyms.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: GET_MY_GYMS,
+        payload: { error: err.message },
+      });
+    };
+  };
+}
+
 
 export function getAllGyms() {
   return async (dispatch) => {
