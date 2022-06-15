@@ -102,20 +102,20 @@ export default function HomeMain() {
     );
   }
 
-  if (type === "user" && avatarLS) {
-    return (
-      <div className={styles.cont}>
-        <GymsForUsersMap />
-        <div>
-          <Sarch />
-          <OrderBy />
-        </div>
-        <GymCards />
-        {/* <CardShop /> */}
-        <Paginated />
-      </div>
-    );
-  }
+  // if (type === "user" && avatarLS) {
+  //   return (
+  //     <div className={styles.cont}>
+  //       <GymsForUsersMap />
+  //       <div>
+  //         <Sarch />
+  //         <OrderBy />
+  //       </div>
+  //       <GymCards />
+  //       {/* <CardShop /> */}
+  //       <Paginated />
+  //     </div>
+  //   );
+  // }
 
   //! Esto es una para cliente empresa
   if (type === "partner") {
